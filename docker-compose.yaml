@@ -1,0 +1,36 @@
+version: '2.9'
+
+services:
+
+  nest-cdk-localstack:
+    image: localstack/localstack
+    container_name: nest-cdk-localstack
+    hostname: nest-cdk-localstack
+    healthcheck:
+      test: awslocal cloudformation list-stacks
+      interval: 1m15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    environment:
+      - SERVICES=cloudformation,apigateway,lambda,sns,sqs
+      - EAGER_SERVICE_LOADING=1
+      - LAMBDA_EXECUTOR=local
+      - LOCALSTACK_HOSTNAME=0.0.0.0
+      - DATA_DIR=/tmp/localstack/data
+      - DEBUG=1
+    volumes:
+      - nest-cdk-localstack-volume:/tmp/localstack
+      - ~/.aws:/root/.aws
+    ports:
+      - '4566:4566'
+
+volumes:
+
+  nest-cdk-localstack-volume:
+    driver: local
+
+networks:
+
+  default:
+    name: nest-cdk-net
