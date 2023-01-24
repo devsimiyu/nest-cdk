@@ -4,6 +4,6 @@ import { SQSRecord } from 'aws-lambda';
 @Injectable()
 export class WebhookService {
   async log(records: SQSRecord[]): Promise<void> {
-    console.log('SQS EVENT', records);
+    console.log('WebhookService SQS EVENT', records);
   }
 }

@@ -6,7 +6,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AppService {
   private readonly notification: AWS.SNS = new AWS.SNS({
-    region: this.config.getOrThrow['AWS_REGION'],
+    region: this.config.getOrThrow['REGION'],
   });
 
   constructor(private config: ConfigService) {}
@@ -17,6 +17,6 @@ export class AppService {
       Message: `Message published to ${country}`,
       TopicArn: this.config.getOrThrow['TOPIC_ARN']
     })
-    return `Message sent to ${country }!`;
+    return `Message sent to ${country}!`;
   }
 }

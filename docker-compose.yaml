@@ -7,7 +7,7 @@ services:
     container_name: nest-cdk-localstack
     hostname: nest-cdk-localstack
     healthcheck:
-      test: awslocal cloudformation list-stacks
+      test: curl http://localhost:4566/_localstack/health | json_pp
       interval: 1m15s
       timeout: 10s
       retries: 5
