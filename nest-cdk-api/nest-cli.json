@@ -16,7 +16,8 @@
       "entryFile": "main",
       "sourceRoot": "apps/gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/gateway/tsconfig.app.json"
+        "tsConfigPath": "apps/gateway/tsconfig.app.json",
+        "webpack": false
       }
     },
     "webhook": {
@@ -25,7 +26,8 @@
       "entryFile": "main",
       "sourceRoot": "apps/webhook/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/webhook/tsconfig.app.json"
+        "tsConfigPath": "apps/webhook/tsconfig.app.json",
+        "webpack": false
       }
     }
   }
