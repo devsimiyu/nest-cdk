@@ -6,7 +6,8 @@ echo 'INSTALL DEPENDENCIES AND SAVE CACHE IN "./.npm"'
 npm install
 
 echo 'RUN BUILD'
-npx nest build "$1"
+rm -rf ./dist
+npx nest build $1
 
 echo 'COPY ARTIFACTS FOR DISTRIBUTION'
 cp -r ./node_modules /asset-output/node_modules
