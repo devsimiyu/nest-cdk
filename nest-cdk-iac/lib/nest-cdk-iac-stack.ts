@@ -22,18 +22,18 @@ export class NestCdkIacStack extends cdk.Stack {
       topicName: 'GatewayTopic'
     });
     const gatewayFunc = new lambda.Function(this, 'GatewayFunc', {
-      code: lambda.Code.fromAsset(path.join('../nest-cdk-api'), {
+      code: lambda.Code.fromAsset(path.join(__dirname, '../../nest-cdk-api'), {
         bundling: {
           image: lambda.Runtime.NODEJS_18_X.bundlingImage,
-          command: ['bash', '-c', 'sh bundle.sh "gateway"'],
-          user: '0:0'
+          command: ['bash', '-c', 'sh bundle.sh "gateway"']
         },
       }),
       runtime: lambda.Runtime.NODEJS_18_X,
       handler: 'dist/apps/gateway/main.handler',
       environment: {
         'TOPIC_ARN': gatewayTopic.topicArn,
-        'REGION': process.env['REGION']!
+        'REGION': process.env['REGION']!,
+        'ENV': process.env['ENV']!,
       }
     });
     const gatewayFuncSnsPublishPolicy = new iam.PolicyStatement({
@@ -58,7 +58,7 @@ export class NestCdkIacStack extends cdk.Stack {
       visibilityTimeout: cdk.Duration.seconds(300)
     });
     const webhookFunc = new lambda.Function(this, 'WebhookFunc', {
-      code: lambda.Code.fromAsset(path.join('../nest-cdk-api'), {
+      code: lambda.Code.fromAsset(path.join(__dirname, '../../nest-cdk-api'), {
         bundling: {
           image: lambda.Runtime.NODEJS_18_X.bundlingImage,
           command: ['bash', '-c', 'sh bundle.sh "webhook"']
