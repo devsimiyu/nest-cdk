@@ -3,7 +3,7 @@
 set -e
 
 echo 'INSTALL DEPENDENCIES AND SAVE CACHE IN "./.npm"'
-npm ci
+npm install
 
 echo 'RUN BUILD'
 npx nest build "$1"
