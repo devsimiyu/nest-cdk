@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { AppService } from './app.service';
 
 export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
+  console.log('GATEWAY FUNC INVOKED');
   const app = await NestFactory.createApplicationContext(AppModule);
   const service = app.get(AppService);
   try {
