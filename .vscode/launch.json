@@ -16,7 +16,8 @@
                 },
                 "environmentVariables": {
                     "REGION": "us-east-1",
-                    "TOPIC_ARN": ""
+                    "TOPIC_ARN": "",
+                    "ENV": "local"
                 }
             }
         },
